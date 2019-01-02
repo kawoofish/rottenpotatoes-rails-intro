@@ -4,10 +4,11 @@
 %table#movies
   %thead
     %tr
-      %th{:class => "hilight('title')", :id => "title_header"}
+      %th{:id => "title_header", :class => "hilight('title')"}
         %a{:href => "#{movies_path}?order=title"} Movie Title
       %th Rating
-      %th{:id => "release_date_header"} Release Date
+      %th{:id => "release_date_header", :class => "hilight('release_date')"}
+        %a{:href => "#{movies_path}?order=relase_date"} Release Date
       %th More Info
   %tbody
     - @movies.each do |movie|
