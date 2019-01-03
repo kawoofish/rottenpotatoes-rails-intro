@@ -1,5 +1,4 @@
 class MoviesController < ApplicationController
-
   helper_method :hilight
   
   def movie_params
@@ -13,7 +12,11 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.order params[:order]
+    if params[:sort]
+      @movies = Movie.order(params[:sort])
+    else
+      @movies = Movie.all
+    end
   end
 
   def new
@@ -44,12 +47,4 @@ class MoviesController < ApplicationController
     redirect_to movies_path
   end
   
-  def hilight(column)
-    if(session[:order].to_s == column)
-      return 'hilite'
-    else
-      return nil
-    end
-  end
-
 end
